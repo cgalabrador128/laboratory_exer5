@@ -70,11 +70,17 @@ include 'role_check.php';
                     <td>Web Systems and Technologies Guide</td>
                     <td>2026-09-16</td>
                     <td>2026-09-18</td>
-                    <td>Pending</td>
+                    <td class="dropdown-cell">
+                        <select name="status" required>
+                            <option value="" disabled selected>Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="deny">Deny</option>
+                        </select>
+                    </td>
                 </tr>
             </tbody>
         </table>
-            <button onclick="document.location='admin.php'">Back to Dashboard</button>
+        <button onclick="document.location='admin.php'">Back to Dashboard</button>
 
     </div>
 
