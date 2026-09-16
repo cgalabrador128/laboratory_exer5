@@ -30,5 +30,6 @@ Your system must demonstrate:
   -->
 
 <?php 
-unset($_SESSION['username'], $_SESSION['role']);
+session_start();
+  unset($_SESSION['username'], $_SESSION['role']);
 ?>

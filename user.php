@@ -28,3 +28,7 @@ Your system must demonstrate:
 • Session timeout
 • Basic security practices
   -->
+
+<?php 
+session_start();
+?>
