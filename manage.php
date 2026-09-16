@@ -37,6 +37,19 @@ include 'role_check.php';
 $reservexml = simplexml_load_file('./xml/reserve.xml') or die("Error: Cannot create object");
 $reserves = [];
 
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+  $id = htmlspecialchars($_POST['transaction_id']);
+  $status = htmlspecialchars($_POST['status']);
+
+  foreach($reservexml->reserve as $i){
+    if((string)$i->transaction_id === $id){
+      $i->status = $status;
+      break;
+    }
+  }
+  $reservexml->asXML('./xml/reserve.xml');
+  header('Location: manage.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -70,19 +83,24 @@ $reserves = [];
             <tbody>
                 <?php foreach ($reservexml->reserve as $i): ?>
                     <tr>
-                        <td><?= htmlspecialchars($i->transaction_id) ?></td>
+                        <td id="transaction-id" ><?= htmlspecialchars($i->transaction_id) ?></td>
                         <td><?= htmlspecialchars($i->library_id) ?></td>
                         <td><?= htmlspecialchars($i->name) ?></td>
                         <td><?= htmlspecialchars($i->book) ?></td>
                         <td><?= htmlspecialchars($i->borrow_date) ?></td>
                         <td><?= htmlspecialchars($i->return_date) ?></td>
-                        <td class="dropdown-cell"><?= htmlspecialchars($i->status) ?>
-                            <select name="status" required>
+                        <?php $status = htmlspecialchars($i->status);
+                         if ($status === 'Pending') :?>
+                        <td class="dropdown-cell">
+                            <select id="status" onchange="changeStatus(this,'<?= htmlspecialchars($i->transaction_id) ?>')" required>
                                 <option value="" disabled selected>Pending</option>
                                 <option value="approved">Approved</option>
                                 <option value="deny">Deny</option>
                             </select>
                         </td>
+                        <?php elseif($status === 'Approved') :?>
+                        <td><?= $status ?></td>
+                        <?php endif; ?> 
 
                     </tr>
                 <?php endforeach; ?>
@@ -95,3 +113,26 @@ $reserves = [];
 </body>
 
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  function changeStatus(selectElement, transactionId){
+    var status = selectElement.value
+
+      $.ajax({
+      type: "POST",
+      url: 'manage.php',
+      data: {
+        transaction_id: transactionId,
+        status: status
+      },
+      success: function(res){
+        //success message
+        console.log('Success');
+        
+      }
+    });
+
+  }
+  
+</script>
+

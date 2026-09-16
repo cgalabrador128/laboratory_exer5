@@ -30,9 +30,10 @@ Your system must demonstrate:
   -->
 <?php 
 
-if (!isset($_SESSION['role'])){
+if (!isset($_SESSION['role']) && basename($_SERVER['PHP_SELF'], '.php' )!== 'login'){
   header('Location: login.php');
-}else{
+  exit();
+}else if (isset($_SESSION['role'])){
   $role = $_SESSION['role']; //may value
   switch(basename($_SERVER['PHP_SELF'], '.php')){
     case 'user':
@@ -49,8 +50,7 @@ if (!isset($_SESSION['role'])){
       }else {
         header('Location: login.php');
       }
-    default:
-      header('Location: login.php');
+  
 
   }
 }
