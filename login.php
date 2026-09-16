@@ -28,7 +28,29 @@ Your system must demonstrate:
 • Session timeout
 • Basic security practices
   -->
+<?php
+session_start();
 
+$dataxml = simplexml_load_file('./xml/data.xml') or die("Error: Cannot create object");
+
+$error = '';
+
+if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+    $user = htmlspecialchars($_POST['username'] ?? '');
+    $pass = htmlspecialchars($_POST['password'] ?? '');
+
+    foreach ($dataxml->children() as $i) {
+        if ((string)$i->username === $user && (string)$i->password === $pass) {
+            $_SESSION['username'] = $user;
+            $_SESSION['role'] = (string)$i->role;
+            header('Location: dashboard.php');
+            exit;
+        }
+    }
+
+    $error = 'Invalid username or password.';
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,12 +72,12 @@ Your system must demonstrate:
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Password" required><br>
             <input type="submit">
-            <!--prints the error message-->
-            <!-- <?php
-            echo "<p>" . $error . "</p>";
-            ?> -->
+            <?php if (!empty($error)) : ?>
+                <p><?php echo htmlspecialchars($error); ?></p>
+            <?php endif; ?>
         </form>
     </div>
 </body>
 
 </html>
+
