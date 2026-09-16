@@ -1,10 +1,11 @@
 <?php 
+session_start();
 if (isset($_SESSION['role'])){
   $role = $_SESSION['role'];
   if($role === 'admin'){
-    header('Location: admin/dashboard.php');
+    header('Location: admin.php');
   } else {
-   header(' Location: user/dashboard.php '); 
+   header(' Location: user.php '); 
   }
 }else{
   header('Location: login.php');

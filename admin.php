@@ -88,6 +88,9 @@ session_start();
 
 if ($_SESSION['role'] !== 'admin'){
 //access denied logic
+  echo 'Access Denied';
+  exit;
 }
+echo 'test';
 ?>
 >>>>>>> main

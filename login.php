@@ -78,6 +78,14 @@ $dataxml = simplexml_load_file('./xml/data.xml') or die("Error: Cannot create ob
 
 $error = '';
 
+if(isset($_SESSION['role'])){
+  header('Location: '.$_SESSION['role'].'.php');
+}
+
+if(isset($_COOKIE['remember_user'])){
+  echo ''; //script for remember user
+}
+
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $user = htmlspecialchars($_POST['username'] ?? '');
     $pass = htmlspecialchars($_POST['password'] ?? '');
@@ -86,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         if ((string)$i->username === $user && (string)$i->password === $pass) {
             $_SESSION['username'] = $user;
             $_SESSION['role'] = (string)$i->role;
-            header('Location: dashboard.php');
+            header('Location: '.$_SESSION['role'].'.php');
             exit;
         }
     }
