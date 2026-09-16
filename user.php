@@ -30,11 +30,22 @@ Your system must demonstrate:
   -->
 <?php 
 include 'session_check.php';
+include 'role_check.php';
 
 if (!isset($_SESSION['role'])){
   echo 'Access Denied';
   exit;
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+  $fullname = htmlspecialchars($_POST['borrower_name']);
+  $libraryId = htmlspecialchars($_POST['library_id']);
+  $booktitle = htmlspecialchars($_POST['book_title']);
+  $borrow_date = date('Y m d', strtotime($_POST['borrow_date'])); // 2025 01 31
+  $return_date = date('Y m d', strtotime($_POST['return_date']));
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

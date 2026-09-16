@@ -29,5 +29,26 @@ Your system must demonstrate:
 • Basic security practices
   -->
 <?php 
-include 'session_check.php';
+if (!isset($_SESSION['role'])){
+  header('Location: login.php');
+}else{
+  $role = $_SESSION['role'];
+  switch($_SERVER['REQUEST_URI']){
+    case 'admin.php':
+      if ($role === 'admin'){
+        break;
+      }else{
+        header('Location: login.php');
+      }
+    case 'user.php':
+      if($role === 'user'){
+        break;
+      }else{
+        header('Location: login.php');
+      }
+    
+  }
+  
+}
+
 ?>

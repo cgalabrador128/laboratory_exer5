@@ -32,4 +32,5 @@ Your system must demonstrate:
   <?php 
   
   include 'session_check.php';
+  include 'role_check.php';
   ?>

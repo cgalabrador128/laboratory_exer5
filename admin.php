@@ -35,11 +35,11 @@ Your system must demonstrate:
 ?>
 <?php 
 include 'session_check.php';
-
-if ($_SESSION['role'] !== 'admin'){
+include 'role_check.php';
+if ($_SESSION['role'] !== 'admin' && isset($_SESSION['role'])){
 //access denied logic
   echo 'Access Denied';
-  exit;
+  exit();
 }
 ?>
 

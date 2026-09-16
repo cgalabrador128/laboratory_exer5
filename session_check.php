@@ -49,7 +49,7 @@ if (isset($_SESSION['LAST_ACTIVITY'])){
   } else {
     $_SESSION['LAST_ACTIVITY'] = $curr;
   }
-}else {
+} else {
   create_session();
 }
 function create_session(){
