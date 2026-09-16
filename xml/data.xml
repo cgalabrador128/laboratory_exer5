@@ -1,0 +1,10 @@
+<users>
+  <user>
+    <username>admin01</username>
+    <role>admin</role>
+  </user>
+  <user>
+    <username>user01</username>
+    <role>user</role>
+  </user>
+</users>
