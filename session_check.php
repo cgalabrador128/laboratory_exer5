@@ -32,4 +32,28 @@ Your system must demonstrate:
 <?php
 session_start();
 
+$sessionTimeout = 10; // 30 mins
+if (isset($_SESSION['LAST_ACTIVITY'])){
+  $lastAct = $_SESSION['LAST_ACTIVITY'];
+  $curr = time();
+  $timeSinceLast = $curr - $lastAct;
+
+  if($timeSinceLast > $sessionTimeout){
+    session_unset();
+    session_destroy();
+    echo'<script> confirm("Session expired. Please log in again.");
+    if(confirm){
+    window.location.href="login.php";
+    }</script>';
+    
+  } else {
+    $_SESSION['LAST_ACTIVITY'] = $curr;
+  }
+}else {
+  create_session();
+}
+function create_session(){
+  $_SESSION['LAST_ACTIVITY'] = time();
+}
+
 ?>

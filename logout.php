@@ -31,6 +31,6 @@ Your system must demonstrate:
 
 <?php 
 include 'session_check.php';
-  unset($_SESSION['username'], $_SESSION['role']);
+  session_unset();
   header('Location: login.php');
 ?>
