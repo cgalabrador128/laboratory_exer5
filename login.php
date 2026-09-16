@@ -33,30 +33,29 @@ session_start();
 
 $dataxml = simplexml_load_file('./xml/data.xml') or die("Error: Cannot create object");
 
-$error = '';
+$error_message = '';
 
 if(isset($_SESSION['role'])){
   header('Location: '.$_SESSION['role'].'.php');
 }
-
-if(isset($_COOKIE['remember_user'])){
-  echo ''; //script for remember user
-}
-
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $user = htmlspecialchars($_POST['username'] ?? '');
     $pass = htmlspecialchars($_POST['password'] ?? '');
+    $remember = $_POST['remember'] ?? false;
 
     foreach ($dataxml->children() as $i) {
         if ((string)$i->username === $user && (string)$i->password === $pass) {
             $_SESSION['username'] = $user;
             $_SESSION['role'] = (string)$i->role;
+            if($remember){
+              setcookie('remember_user', $user, 0, '/');
+            }
             header('Location: '.$_SESSION['role'].'.php');
             exit;
         }
     }
 
-    $error = 'Invalid username or password.';
+    $error_message = 'Invalid username or password.';
 }
 ?>
 
@@ -80,8 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" 
-                       value="<?php echo isset($_COOKIE['remembered_user']) ? htmlspecialchars($_COOKIE['remembered_user']) : ''; ?>" 
-                       required minlength="5" placeholder="Enter username">
+                       value="<?php echo isset($_COOKIE['remember_user']) ? htmlspecialchars($_COOKIE['remember_user']) : ''; ?>" 
+                       required minlength="4" placeholder="Enter username">
             </div>
 
             <div class="form-group">
@@ -90,8 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             </div>
 
             <div class="form-group checkbox-group">
-                <input type="checkbox" id="remember" name="remember" 
-                       <?php if(isset($_COOKIE['remembered_user'])) echo 'checked'; ?>>
+                <input type="checkbox" id="remember" name="remember" >
                 <label for="remember">Remember my username</label>
             </div>
 
