@@ -34,6 +34,24 @@ if (!isset($_SESSION['role'])){
   header('Location: login.php');
 }else{
   $role = $_SESSION['role']; //may value
-  
+  switch(basename($_SERVER['PHP_SELF'], '.php')){
+    case 'user':
+    case 'transaction':
+      if($role === 'user'){
+        break;
+      }else {
+        header('Location: login.php');
+      }
+    case 'admin':
+    case 'manage':
+      if($role === 'admin'){
+        break;
+      }else {
+        header('Location: login.php');
+      }
+    default:
+      header('Location: login.php');
+
+  }
 }
 ?>

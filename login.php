@@ -30,6 +30,7 @@ Your system must demonstrate:
   -->
 <?php
 include 'session_check.php';
+include 'role_check.php';
 
 $dataxml = simplexml_load_file('./xml/data.xml') or die("Error: Cannot create object");
 
