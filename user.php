@@ -33,7 +33,7 @@ include 'session_check.php';
 include 'role_check.php';
 
 if (!isset($_SESSION['role'])) {
-  echo 'Access Denied';
+  header('Location: login.php');
   exit;
 }
 

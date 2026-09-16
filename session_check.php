@@ -30,7 +30,10 @@ Your system must demonstrate:
   -->
 
 <?php
-session_start();
+if (!isset($_SESSION)){
+  session_start();
+}
+
 
 $sessionTimeout = 1800; // 30 mins
 if (isset($_SESSION['LAST_ACTIVITY'])){
