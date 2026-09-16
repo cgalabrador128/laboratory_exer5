@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $reservexml->id++;
 
     $reservexml->asXML('./xml/reserve.xml');
-    $success_msg = 'success';
+    $success_msg = 'Reservation Submitted. Awaiting Approval.';
   }
 }
 ?>

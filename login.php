@@ -64,12 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction</title>
+    <title>Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="login-container">
-        <h2>Library System Login</h2>
+        <h2>Login</h2>
         
         <!-- Error Message Display -->
         <?php if (!empty($error_message)): ?>
