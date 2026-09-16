@@ -37,12 +37,22 @@ if (!isset($_SESSION['role'])) {
   exit;
 }
 
+$reservexml = simplexml_load_file('./xml/reserve.xml') or die("Error: Cannot create object");
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $fullname = htmlspecialchars($_POST['borrower_name']);
   $libraryId = htmlspecialchars($_POST['library_id']);
   $booktitle = htmlspecialchars($_POST['book_title']);
   $borrow_date = date('Y m d', strtotime($_POST['borrow_date'])); // 2025 01 31
   $return_date = date('Y m d', strtotime($_POST['return_date']));
+
+  $xmlData = $reservexml->addChild('reserve');
+  $xmlData->addChild('name', $fullname);
+  $xmlData->addChild('id', $libraryId);
+  $xmlData->addChild('book', $booktitle);
+  $xmlData->addChild('borrow_date', $borrow_date);
+  $xmlData->addChild('return_date', $return_date);
+  
 }
 
 ?>
