@@ -29,6 +29,10 @@ Your system must demonstrate:
 • Basic security practices
   -->
 
+
+  <?php
+// Session & Role check logic (Admin verification) handled by Student B
+?>
 <?php 
 session_start();
 
