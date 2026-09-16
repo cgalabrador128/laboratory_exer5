@@ -32,7 +32,7 @@ Your system must demonstrate:
 <?php
 session_start();
 
-$sessionTimeout = 10; // 30 mins
+$sessionTimeout = 1800; // 30 mins
 if (isset($_SESSION['LAST_ACTIVITY'])){
   $lastAct = $_SESSION['LAST_ACTIVITY'];
   $curr = time();
