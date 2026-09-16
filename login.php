@@ -28,3 +28,44 @@ Your system must demonstrate:
 • Session timeout
 • Basic security practices
   -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Library Reservation System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Library System Login</h2>
+        
+        <!-- Error Message Display -->
+        <?php if (!empty($error_message)): ?>
+            <div class="error-box"><?php echo htmlspecialchars($error_message); ?></div>
+        <?php endif; ?>
+
+        <form action="login.php" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" 
+                       value="<?php echo isset($_COOKIE['remembered_user']) ? htmlspecialchars($_COOKIE['remembered_user']) : ''; ?>" 
+                       required minlength="5" placeholder="Enter username">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter password">
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="remember" name="remember" 
+                       <?php if(isset($_COOKIE['remembered_user'])) echo 'checked'; ?>>
+                <label for="remember">Remember my username</label>
+            </div>
+
+            <button type="submit" name="login_btn">Login</button>
+        </form>
+    </div>
+</body>
+</html>
