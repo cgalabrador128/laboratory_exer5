@@ -29,47 +29,55 @@ Your system must demonstrate:
 • Basic security practices
   -->
 
-  <?php 
-  
-  include 'session_check.php';
-  include 'role_check.php';
-  
-  ?>
+<?php
 
-  <!DOCTYPE html>
-  <html lang="en">
+include 'session_check.php';
+include 'role_check.php';
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaction</title>
     <link rel="stylesheet" href="style.css">
 </head>
-  <body>
-    <div class="content-section">
-      <h3>Library System Management</h3>
-      <p>Here you can view, add, or delete book reservations and system user records.</p>
 
-      <!-- Sample Management Table Structure -->
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Transaction ID</th>
-            <th>Borrower</th>
-            <th>Book Title</th>
-            <th>Borrow Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>101</td>
-            <td>Juan Dela Cruz</td>
-            <td>Web Systems and Technologies Guide</td>
-            <td>2026-09-16</td>
-            <td>Active</td>
-          </tr>
-        </tbody>
-      </table>
+<body>
+    <div class="content-section">
+        <h3>Library System Management</h3>
+        <p>Here you can view, add, or delete book reservations and system user records.</p>
+
+        <!-- Sample Management Table Structure -->
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Borrower</th>
+                    <th>Book Title</th>
+                    <th>Borrow Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>101</td>
+                    <td>Juan Dela Cruz</td>
+                    <td>Web Systems and Technologies Guide</td>
+                    <td>2026-09-16</td>
+                    <td>2026-09-18</td>
+                    <td>Pending</td>
+                </tr>
+            </tbody>
+        </table>
+            <button onclick="document.location='admin.php'">Back to Dashboard</button>
+
     </div>
-  </body>
-  </html>
+
+</body>
+
+</html>

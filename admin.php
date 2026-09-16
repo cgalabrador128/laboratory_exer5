@@ -60,7 +60,7 @@ if ($_SESSION['role'] !== 'admin' && isset($_SESSION['role'])) {
       <h2>Administrator Dashboard</h2>
       <p>Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'Administrator'); ?> (Role: Admin)</p>
       <nav>
-        <a href="admin.php">Manage Records</a> |
+        <a href="manage.php">Manage Records</a> |
         <a href="logout.php">Logout</a>
       </nav>
     </header>

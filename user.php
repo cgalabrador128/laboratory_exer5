@@ -62,12 +62,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'User'); ?>!</h2>
       <p>Role: Regular User</p>
       <nav>
-        <a href="user.php">Dashboard & Reservation</a> |
+        <a href="transaction.php">Reservation</a> |
         <a href="logout.php">Logout</a>
       </nav>
     </header>
 
     <hr>
+    <h3>My Reservations</h3>
+
+    <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Borrow Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Web Systems and Technologies Guide</td>
+                    <td>2026-09-16</td>
+                    <td>2026-09-18</td>
+                    <td>Pending</td>
+                </tr>
+            </tbody>
+        </table>  
+
 
     
   </div>
