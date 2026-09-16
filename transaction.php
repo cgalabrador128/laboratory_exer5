@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $xmlData->addChild('borrow_date', $borrow_date);
     $xmlData->addChild('return_date', $return_date);
     $xmlData->addChild('status', 'Pending');
-    $reservexml->id++;
+    $reservexml->id = (int)$reservexml->id + 1;
 
     $reservexml->asXML('./xml/reserve.xml');
     $success_msg = 'Reservation Submitted. Awaiting Approval.';
