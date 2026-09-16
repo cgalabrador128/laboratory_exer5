@@ -30,14 +30,14 @@ Your system must demonstrate:
   -->
 
 
-  <?php
+<?php
 // Session & Role check logic (Admin verification) handled by Student B
 ?>
-<?php 
+<?php
 include 'session_check.php';
 include 'role_check.php';
-if ($_SESSION['role'] !== 'admin' && isset($_SESSION['role'])){
-//access denied logic
+if ($_SESSION['role'] !== 'admin' && isset($_SESSION['role'])) {
+  //access denied logic
   echo 'Access Denied';
   exit();
 }
@@ -46,51 +46,29 @@ if ($_SESSION['role'] !== 'admin' && isset($_SESSION['role'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard - Library System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="admin-container">
-        <header>
-            <h2>Administrator Dashboard</h2>
-            <p>Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'Administrator'); ?> (Role: Admin)</p>
-            <nav>
-                <a href="admin.php">Manage Records</a> | 
-                <a href="logout.php">Logout</a>
-            </nav>
-        </header>
+  <div class="admin-container">
+    <header>
+      <h2>Administrator Dashboard</h2>
+      <p>Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'Administrator'); ?> (Role: Admin)</p>
+      <nav>
+        <a href="admin.php">Manage Records</a> |
+        <a href="logout.php">Logout</a>
+      </nav>
+    </header>
 
-        <hr>
+    <hr>
 
-        <div class="content-section">
-            <h3>Library System Management</h3>
-            <p>Here you can view, add, or delete book reservations and system user records.</p>
-            
-            <!-- Sample Management Table Structure -->
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Transaction ID</th>
-                        <th>Borrower</th>
-                        <th>Book Title</th>
-                        <th>Borrow Date</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>101</td>
-                        <td>Juan Dela Cruz</td>
-                        <td>Web Systems and Technologies Guide</td>
-                        <td>2026-09-16</td>
-                        <td>Active</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    
+  </div>
 </body>
-</html>
 
+</html>

@@ -28,92 +28,49 @@ Your system must demonstrate:
 • Session timeout
 • Basic security practices
   -->
-<?php 
+<?php
 include 'session_check.php';
 include 'role_check.php';
 
-if (!isset($_SESSION['role'])){
+if (!isset($_SESSION['role'])) {
   echo 'Access Denied';
   exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $fullname = htmlspecialchars($_POST['borrower_name']);
   $libraryId = htmlspecialchars($_POST['library_id']);
   $booktitle = htmlspecialchars($_POST['book_title']);
   $borrow_date = date('Y m d', strtotime($_POST['borrow_date'])); // 2025 01 31
   $return_date = date('Y m d', strtotime($_POST['return_date']));
-
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>User Dashboard - Library System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="dashboard-container">
-        <header>
-            <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'User'); ?>!</h2>
-            <p>Role: Regular User</p>
-            <nav>
-                <a href="user.php">Dashboard & Reservation</a> | 
-                <a href="logout.php">Logout</a>
-            </nav>
-        </header>
+  <div class="dashboard-container">
+    <header>
+      <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'User'); ?>!</h2>
+      <p>Role: Regular User</p>
+      <nav>
+        <a href="user.php">Dashboard & Reservation</a> |
+        <a href="logout.php">Logout</a>
+      </nav>
+    </header>
 
-        <hr>
+    <hr>
 
-        <div class="form-container">
-            <h3>Reserve a Library Book</h3>
-            
-            <?php if (!empty($success_msg)): ?>
-                <div class="success-box"><?php echo htmlspecialchars($success_msg); ?></div>
-            <?php endif; ?>
-
-            <?php if (!empty($error_msg)): ?>
-                <div class="error-box"><?php echo htmlspecialchars($error_msg); ?></div>
-            <?php endif; ?>
-
-            <form action="user.php" method="POST">
-                <div class="form-group">
-                    <label for="borrower_name">Borrower Full Name:</label>
-                    <input type="text" id="borrower_name" name="borrower_name" required minlength="2" placeholder="Full Name">
-                </div>
-
-                <div class="form-group">
-                    <label for="library_id">Library / Student ID:</label>
-                    <input type="text" id="library_id" name="library_id" required placeholder="e.g., 2020112405">
-                </div>
-
-                <div class="form-group">
-                    <label for="book_title">Select Book:</label>
-                    <select id="book_title" name="book_title" required>
-                        <option value="">-- Choose a Book --</option>
-                        <option value="datastructures">Introduction to Data Structures</option>
-                        <option value="webtech">Web Systems and Technologies Guide</option>
-                        <option value="osconcepts">Operating System Concepts</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="borrow_date">Borrow Date:</label>
-                    <!-- Prevents selecting past dates -->
-                    <input type="date" id="borrow_date" name="borrow_date" required min="<?php echo date('Y-m-d'); ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="return_date">Expected Return Date:</label>
-                    <input type="date" id="return_date" name="return_date" required min="<?php echo date('Y-m-d'); ?>">
-                </div>
-
-                <button type="submit" name="submit_reservation">Submit Reservation</button>
-            </form>
-        </div>
-    </div>
+    
+  </div>
 </body>
-</html>
 
+</html>
