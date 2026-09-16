@@ -82,6 +82,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             </thead>
             <tbody>
                 <?php foreach ($reservexml->reserve as $i): ?>
+                  <?php $status = htmlspecialchars($i->status); 
+                  if (($status === 'Pending') | ($status === 'approved')) : ?>
                     <tr>
                         <td id="transaction-id" ><?= htmlspecialchars($i->transaction_id) ?></td>
                         <td><?= htmlspecialchars($i->library_id) ?></td>
@@ -89,8 +91,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         <td><?= htmlspecialchars($i->book) ?></td>
                         <td><?= htmlspecialchars($i->borrow_date) ?></td>
                         <td><?= htmlspecialchars($i->return_date) ?></td>
-                        <?php $status = htmlspecialchars($i->status);
-                         if ($status === 'Pending') :?>
+                        <?php if ($status === 'Pending') :?>
                         <td class="dropdown-cell">
                             <select id="status" onchange="changeStatus(this,'<?= htmlspecialchars($i->transaction_id) ?>')" required>
                                 <option value="" disabled selected>Pending</option>
@@ -98,11 +99,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                                 <option value="deny">Deny</option>
                             </select>
                         </td>
-                        <?php elseif($status === 'Approved') :?>
-                        <td><?= $status ?></td>
+                        <?php elseif($status === 'approved') :?>
+                        <td><?= ucfirst($status) ?></td>
                         <?php endif; ?> 
 
                     </tr>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
