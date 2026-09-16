@@ -34,6 +34,9 @@ Your system must demonstrate:
 include 'session_check.php';
 include 'role_check.php';
 
+$reservexml = simplexml_load_file('./xml/reserve.xml') or die("Error: Cannot create object");
+$reserves = [];
+
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +58,7 @@ include 'role_check.php';
         <table class="data-table">
             <thead>
                 <tr>
+                    <th>Transaction ID</th>
                     <th>Student ID</th>
                     <th>Borrower</th>
                     <th>Book Title</th>
@@ -64,20 +68,24 @@ include 'role_check.php';
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>101</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Web Systems and Technologies Guide</td>
-                    <td>2026-09-16</td>
-                    <td>2026-09-18</td>
-                    <td class="dropdown-cell">
-                        <select name="status" required>
-                            <option value="" disabled selected>Pending</option>
-                            <option value="approved">Approved</option>
-                            <option value="deny">Deny</option>
-                        </select>
-                    </td>
-                </tr>
+                <?php foreach ($reservexml->reserve as $i): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($i->transaction_id) ?></td>
+                        <td><?= htmlspecialchars($i->library_id) ?></td>
+                        <td><?= htmlspecialchars($i->name) ?></td>
+                        <td><?= htmlspecialchars($i->book) ?></td>
+                        <td><?= htmlspecialchars($i->borrow_date) ?></td>
+                        <td><?= htmlspecialchars($i->return_date) ?></td>
+                        <td class="dropdown-cell"><?= htmlspecialchars($i->status) ?>
+                            <select name="status" required>
+                                <option value="" disabled selected>Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="deny">Deny</option>
+                            </select>
+                        </td>
+
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
         <button onclick="document.location='admin.php'">Back to Dashboard</button>

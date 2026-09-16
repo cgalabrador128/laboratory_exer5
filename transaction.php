@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $borrow_date = date('Y-m-d', strtotime($_POST['borrow_date'] ?? '')); // 2025 01 31
   $return_date = date('Y-m-d', strtotime($_POST['return_date'] ?? ''));
 
-  if($borrow_date < $return_date){
+  if($borrow_date > $return_date){
     $error_message = '';
 
   }else {
