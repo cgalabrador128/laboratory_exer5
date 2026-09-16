@@ -91,7 +91,7 @@ $reserveLength = sizeof($myreserves);
                     <td><?=htmlspecialchars($res->book)?></td>
                     <td><?= htmlspecialchars($res->borrow_date) ?></td>
                     <td><?= htmlspecialchars($res->return_date) ?></td>
-                    <td><?= htmlspecialchars($res->status) ?></td>
+                    <td><?= ucfirst(htmlspecialchars($res->status)) ?></td>
                 </tr>
                 <?php endforeach; ?>
               <?php endif; ?>
