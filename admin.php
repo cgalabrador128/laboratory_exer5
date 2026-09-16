@@ -29,9 +29,15 @@ Your system must demonstrate:
 • Basic security practices
   -->
 
-<<<<<<< html
-  <?php
-// Session & Role check logic (Admin verification) handled by Student B
+<?php 
+session_start();
+
+if ($_SESSION['role'] !== 'admin'){
+//access denied logic
+  echo 'Access Denied';
+  exit;
+}
+echo 'test';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,15 +88,4 @@ Your system must demonstrate:
     </div>
 </body>
 </html>
-=======
-<?php 
-session_start();
 
-if ($_SESSION['role'] !== 'admin'){
-//access denied logic
-  echo 'Access Denied';
-  exit;
-}
-echo 'test';
-?>
->>>>>>> main
