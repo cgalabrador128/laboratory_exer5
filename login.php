@@ -29,7 +29,7 @@ Your system must demonstrate:
 • Basic security practices
   -->
 <?php
-session_start();
+include 'session_check.php';
 
 $dataxml = simplexml_load_file('./xml/data.xml') or die("Error: Cannot create object");
 

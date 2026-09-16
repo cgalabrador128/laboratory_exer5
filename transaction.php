@@ -28,3 +28,9 @@ Your system must demonstrate:
 • Session timeout
 • Basic security practices
   -->
+
+<?php 
+
+include 'session_check.php';
+
+?>

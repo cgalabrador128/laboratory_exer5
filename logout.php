@@ -30,7 +30,7 @@ Your system must demonstrate:
   -->
 
 <?php 
-session_start();
+include 'session_check.php';
   unset($_SESSION['username'], $_SESSION['role']);
   header('Location: login.php');
 ?>

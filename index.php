@@ -1,5 +1,5 @@
 <?php 
-session_start();
+include 'session_check.php';
 if (isset($_SESSION['role'])){
   $role = $_SESSION['role'];
   if($role === 'admin'){

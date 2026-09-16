@@ -28,7 +28,14 @@ Your system must demonstrate:
 • Session timeout
 • Basic security practices
   -->
+<?php 
+include 'session_check.php';
 
+if (!isset($_SESSION['role'])){
+  echo 'Access Denied';
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,3 +105,4 @@ Your system must demonstrate:
     </div>
 </body>
 </html>
+

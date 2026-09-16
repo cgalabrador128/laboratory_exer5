@@ -34,7 +34,7 @@ Your system must demonstrate:
 // Session & Role check logic (Admin verification) handled by Student B
 ?>
 <?php 
-session_start();
+include 'session_check.php';
 
 if ($_SESSION['role'] !== 'admin'){
 //access denied logic
