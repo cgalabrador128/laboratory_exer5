@@ -1,5 +1,8 @@
-System Name: Library System
+System Name: Library Reservation System
 Members: 
+Carreon, Gerome Vincent
+Labrador, Catherine Grace
+Magpantay III, Ruben (Hernandez)
 
 
 Admin Account:
