@@ -28,3 +28,34 @@ Your system must demonstrate:
 • Session timeout
 • Basic security practices
   -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="login-card">
+        <h1>Library Reservation</h1>
+        <h2>Login</h2>
+        <form method="POST" action="login.php">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Username" required><br>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" required><br>
+            <input type="submit">
+            <!--prints the error message-->
+            <!-- <?php
+            echo "<p>" . $error . "</p>";
+            ?> -->
+        </form>
+    </div>
+</body>
+
+</html>
