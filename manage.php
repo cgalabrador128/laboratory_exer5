@@ -34,6 +34,9 @@ Your system must demonstrate:
 include 'session_check.php';
 include 'role_check.php';
 
+$reservexml = simplexml_load_file('./xml/reserve.xml') or die("Error: Cannot create object");
+$reserves = [];
+
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +58,7 @@ include 'role_check.php';
         <table class="data-table">
             <thead>
                 <tr>
+                    <th>Transaction ID</th>
                     <th>Student ID</th>
                     <th>Borrower</th>
                     <th>Book Title</th>
@@ -64,7 +68,9 @@ include 'role_check.php';
                 </tr>
             </thead>
             <tbody>
+              <?php foreach($reservexml->reserve as (string)$i): ?>
                 <tr>
+                    <td><?= htmlspecialchars($i->transaction_id) ?></td>
                     <td>101</td>
                     <td>Juan Dela Cruz</td>
                     <td>Web Systems and Technologies Guide</td>
@@ -72,6 +78,7 @@ include 'role_check.php';
                     <td>2026-09-18</td>
                     <td>Pending</td>
                 </tr>
+              <?php endforeach; ?>
             </tbody>
         </table>
             <button onclick="document.location='admin.php'">Back to Dashboard</button>
