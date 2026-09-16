@@ -32,4 +32,5 @@ Your system must demonstrate:
 <?php 
 session_start();
   unset($_SESSION['username'], $_SESSION['role']);
+  header('Location: login.php');
 ?>

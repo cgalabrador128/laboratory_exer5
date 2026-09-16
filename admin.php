@@ -37,8 +37,9 @@ if ($_SESSION['role'] !== 'admin'){
   echo 'Access Denied';
   exit;
 }
-echo 'test';
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

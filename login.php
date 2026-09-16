@@ -28,7 +28,37 @@ Your system must demonstrate:
 • Session timeout
 • Basic security practices
   -->
-<<<<<<< html
+<?php
+session_start();
+
+$dataxml = simplexml_load_file('./xml/data.xml') or die("Error: Cannot create object");
+
+$error = '';
+
+if(isset($_SESSION['role'])){
+  header('Location: '.$_SESSION['role'].'.php');
+}
+
+if(isset($_COOKIE['remember_user'])){
+  echo ''; //script for remember user
+}
+
+if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+    $user = htmlspecialchars($_POST['username'] ?? '');
+    $pass = htmlspecialchars($_POST['password'] ?? '');
+
+    foreach ($dataxml->children() as $i) {
+        if ((string)$i->username === $user && (string)$i->password === $pass) {
+            $_SESSION['username'] = $user;
+            $_SESSION['role'] = (string)$i->role;
+            header('Location: '.$_SESSION['role'].'.php');
+            exit;
+        }
+    }
+
+    $error = 'Invalid username or password.';
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,66 +100,4 @@ Your system must demonstrate:
     </div>
 </body>
 </html>
-=======
-<?php
-session_start();
 
-$dataxml = simplexml_load_file('./xml/data.xml') or die("Error: Cannot create object");
-
-$error = '';
-
-if(isset($_SESSION['role'])){
-  header('Location: '.$_SESSION['role'].'.php');
-}
-
-if(isset($_COOKIE['remember_user'])){
-  echo ''; //script for remember user
-}
-
-if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-    $user = htmlspecialchars($_POST['username'] ?? '');
-    $pass = htmlspecialchars($_POST['password'] ?? '');
-
-    foreach ($dataxml->children() as $i) {
-        if ((string)$i->username === $user && (string)$i->password === $pass) {
-            $_SESSION['username'] = $user;
-            $_SESSION['role'] = (string)$i->role;
-            header('Location: '.$_SESSION['role'].'.php');
-            exit;
-        }
-    }
-
-    $error = 'Invalid username or password.';
-}
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <div class="login-card">
-        <h1>Library Reservation</h1>
-        <h2>Login</h2>
-        <form method="POST" action="login.php">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Username" required><br>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Password" required><br>
-            <input type="submit">
-            <?php if (!empty($error)) : ?>
-                <p><?php echo htmlspecialchars($error); ?></p>
-            <?php endif; ?>
-        </form>
-    </div>
-</body>
-
-</html>
-
->>>>>>> main
