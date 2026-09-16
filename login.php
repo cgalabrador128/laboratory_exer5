@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Login - Library Reservation System</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="login-container">

@@ -41,7 +41,7 @@ if (!isset($_SESSION['role'])){
 <head>
     <meta charset="UTF-8">
     <title>User Dashboard - Library System</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="dashboard-container">

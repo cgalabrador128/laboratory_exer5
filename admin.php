@@ -49,7 +49,7 @@ if ($_SESSION['role'] !== 'admin'){
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard - Library System</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="admin-container">
