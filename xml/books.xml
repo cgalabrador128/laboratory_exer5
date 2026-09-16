@@ -1,0 +1,14 @@
+<books>
+  <book>
+    <name>Introduction to Data Structures</name>
+    <availability>1</availability>
+  </book>
+  <book>
+    <name>Web Systems and Technologies Guide</name>
+    <availability>1</availability>
+  </book>
+  <book>
+    <name>Operating System Concepts</name>
+    <availability>1</availability>
+  </book>
+</books>

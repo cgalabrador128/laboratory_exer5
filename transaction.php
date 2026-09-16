@@ -68,15 +68,19 @@ include 'session_check.php';
                 <input type="text" id="student_num" name="student_num" required placeholder="202xxxxxxx" pattern="^202[0-6]{7}$" maxlength="10" >
             </div>
 
-            <div class="form-group">
-                <label for="book_title">Select Book:</label>
-                <select id="book_title" name="book_title" required>
-                    <option value="">-- Choose a Book --</option>
-                    <option value="datastructures">Introduction to Data Structures</option>
-                    <option value="webtech">Web Systems and Technologies Guide</option>
-                    <option value="osconcepts">Operating System Concepts</option>
-                </select>
-            </div>
+        <div class="form-group">
+          <label for="book_title">Select Book:</label>
+          <select id="book_title" name="book_title" required>
+            <option value="">-- Choose a Book --</option>
+            <?php $books = simplexml_load_file('./xml/books.xml') or die("Error: Cannot create object");
+            foreach($books->children() as $book): ?>
+              <?php if((string)$book->availability) :
+               $name = (string)$book->name;?>
+                <option value="<?=htmlspecialchars($name)?>"><?=htmlspecialchars($name)?></option>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </select>
+        </div>
 
             <div class="form-group">
                 <label for="borrow_date">Borrow Date:</label>
