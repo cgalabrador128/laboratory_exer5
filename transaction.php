@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $return_date = date('Y-m-d', strtotime($_POST['return_date'] ?? ''));
 
   if($borrow_date > $return_date){
-    $error_message = '';
+    $error_message = 'Borrow Date is Later than Return Date. ';
 
   }else {
     $xmlData = $reservexml->addChild('reserve');
