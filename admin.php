@@ -29,6 +29,60 @@ Your system must demonstrate:
 • Basic security practices
   -->
 
+<<<<<<< html
+  <?php
+// Session & Role check logic (Admin verification) handled by Student B
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Library System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header>
+            <h2>Administrator Dashboard</h2>
+            <p>Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'Administrator'); ?> (Role: Admin)</p>
+            <nav>
+                <a href="admin.php">Manage Records</a> | 
+                <a href="logout.php">Logout</a>
+            </nav>
+        </header>
+
+        <hr>
+
+        <div class="content-section">
+            <h3>Library System Management</h3>
+            <p>Here you can view, add, or delete book reservations and system user records.</p>
+            
+            <!-- Sample Management Table Structure -->
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Borrower</th>
+                        <th>Book Title</th>
+                        <th>Borrow Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>Juan Dela Cruz</td>
+                        <td>Web Systems and Technologies Guide</td>
+                        <td>2026-09-16</td>
+                        <td>Active</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+=======
 <?php 
 session_start();
 
@@ -36,3 +90,4 @@ if ($_SESSION['role'] !== 'admin'){
 //access denied logic
 }
 ?>
+>>>>>>> main
