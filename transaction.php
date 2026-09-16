@@ -30,9 +30,37 @@ Your system must demonstrate:
   -->
 
 <?php
-
 include 'session_check.php';
+include 'role_check.php';
 
+$reservexml = simplexml_load_file('./xml/reserve.xml') or die("Error: Cannot create object");
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $fullname = htmlspecialchars($_POST['borrower_name'] ?? '');
+  $libraryId = htmlspecialchars($_POST['student_num'] ?? '');
+  $booktitle = htmlspecialchars($_POST['book_title'] ?? '');
+  $borrow_date = date('Y-m-d', strtotime($_POST['borrow_date'] ?? '')); // 2025 01 31
+  $return_date = date('Y-m-d', strtotime($_POST['return_date'] ?? ''));
+
+  if($borrow_date < $return_date){
+    $error_message = '';
+
+  }else {
+    $xmlData = $reservexml->addChild('reserve');
+    $xmlData->addChild('transaction_id', $reservexml->id);
+    $xmlData->addChild('user', $_SESSION['username']);
+    $xmlData->addChild('name', $fullname);
+    $xmlData->addChild('library_id', $libraryId);
+    $xmlData->addChild('book', $booktitle);
+    $xmlData->addChild('borrow_date', $borrow_date);
+    $xmlData->addChild('return_date', $return_date);
+    $xmlData->addChild('status', 'Pending');
+    $reservexml->id++;
+
+    $reservexml->asXML('./xml/reserve.xml');
+    $success_msg = 'success';
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +93,7 @@ include 'session_check.php';
 
             <div class="form-group">
                 <label for="student_num">Student Number:</label>
-                <input type="text" id="student_num" name="student_num" required placeholder="202xxxxxxx" pattern="^202[0-6]{7}$" maxlength="10" >
+                <input type="text" id="student_num" name="student_num" required placeholder="202xxxxxxx" maxlength="10" >
             </div>
 
         <div class="form-group">
