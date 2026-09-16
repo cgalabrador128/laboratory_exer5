@@ -28,3 +28,21 @@ Your system must demonstrate:
 • Session timeout
 • Basic security practices
   -->
+<?php 
+session_start();
+
+$dataxml = simplexml_load_file('./xml/data.xml') or die("Error: Cannot create object");
+print($dataxml->user[0]->username);
+
+if ($_SERVER["REQUEST_METHOD"] === 'POST'){
+  $user = htmlspecialchars($_POST['user']);
+  $pass = htmlspecialchars($_POST['pass']);
+
+  foreach($dataxml->children() as $i){
+    if((($i->username) === $user) && (($i->password)===$pass)){
+      $_SESSION['user'] = $user;
+      $_SESSION['role'] = $i->role;
+    }
+  }
+}
+?>
