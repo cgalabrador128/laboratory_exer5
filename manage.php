@@ -68,15 +68,15 @@ $reserves = [];
                 </tr>
             </thead>
             <tbody>
-              <?php foreach($reservexml->reserve as (string)$i): ?>
+              <?php foreach($reservexml->reserve as $i): ?>
                 <tr>
                     <td><?= htmlspecialchars($i->transaction_id) ?></td>
-                    <td>101</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Web Systems and Technologies Guide</td>
-                    <td>2026-09-16</td>
-                    <td>2026-09-18</td>
-                    <td>Pending</td>
+                    <td><?= htmlspecialchars($i->library_id) ?></td>
+                    <td><?= htmlspecialchars($i->name) ?></td>
+                    <td><?= htmlspecialchars($i->book) ?></td>
+                    <td><?= htmlspecialchars($i->borrow_date) ?></td>
+                    <td><?= htmlspecialchars($i->return_date) ?></td>
+                    <td><?= htmlspecialchars($i->status) ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
