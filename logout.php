@@ -28,3 +28,7 @@ Your system must demonstrate:
 • Session timeout
 • Basic security practices
   -->
+
+<?php 
+unset($_SESSION['username'], $_SESSION['role']);
+?>
