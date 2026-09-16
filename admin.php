@@ -48,26 +48,25 @@ if ($_SESSION['role'] !== 'admin' && isset($_SESSION['role'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="admin-container">
     <header>
-      <h2>Administrator Dashboard</h2>
-      <p>Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'Administrator'); ?> (Role: Admin)</p>
+      <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'Administrator'); ?> </h2>
+      <p>Role: Administrator</p>
       <nav>
-        <a href="manage.php">Manage Records</a> |
-        <a href="logout.php">Logout</a>
+        <button onclick="document.location='manage.php'">Manage Records</button>
+        <button onclick="document.location='logout.php'">Logout</button>
+
       </nav>
     </header>
 
-    <hr>
 
-    
   </div>
 </body>
 

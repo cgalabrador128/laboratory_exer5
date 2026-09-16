@@ -64,10 +64,10 @@ $reserveLength = sizeof($myreserves);
   <div class="dashboard-container">
     <header>
       <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'User'); ?>!</h2>
-      <p>Role: Regular User</p>
+      <p>Role: User</p>
       <nav>
-        <a href="transaction.php">Reservation</a> |
-        <a href="logout.php">Logout</a>
+        <button onclick="document.location='transaction.php'">Reservation</button>
+        <button onclick="document.location='logout.php'">Logout</button>
       </nav>
     </header>
 
